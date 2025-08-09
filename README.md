@@ -203,3 +203,4 @@ MCP_Server_Creation/
 - Check Stytch documentation: [docs.stytch.com](https://docs.stytch.com)
 - FastMCP documentation: [github.com/fastmcp/fastmcp](https://github.com/fastmcp/fastmcp)
 - ngrok documentation: [ngrok.com/docs](https://ngrok.com/docs)
+- This project was built while following along to [this tutorial](https://youtu.be/j5f2EQf5hkw?si=ADm68_N94F8dOOeE) from Tech With Tim
