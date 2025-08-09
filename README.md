@@ -2,6 +2,8 @@
 
 A full-stack application that demonstrates how to create a Model Context Protocol (MCP) server with authentication, a React frontend, and a Python backend with SQLite database.
 
+https://www.loom.com/share/12b6eeecdc404862a03cf5c804315aaa?sid=d9a7c09c-4356-4092-8fc8-3a1b6123e071
+
 ## 🏗️ Project Architecture
 
 This project consists of three main components:
@@ -79,6 +81,8 @@ The frontend is a React application built with Vite that provides a user interfa
 ### Authentication Providers
 - Password-based authentication
 - Note: need to set redirect urls with Stytch if using Magic link or Oauth authentication
+
+
 
 ### Dependencies
 - `@stytch/react`: Stytch React SDK
