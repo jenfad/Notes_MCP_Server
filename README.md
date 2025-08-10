@@ -68,6 +68,7 @@ class Note(Base):
 - `sqlalchemy>=2.0.42`: Database ORM
 - `stytch>=13.12.0`: Authentication service
 - `dotenv>=0.9.9`: Environment variable management
+- `python-jose>=3.5.0`: Jwt token unloading
 
 ## 🎨 Frontend (React + Stytch)
 

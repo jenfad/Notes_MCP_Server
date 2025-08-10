@@ -8,6 +8,7 @@ from starlette.responses import JSONResponse
 from fastmcp.server.auth import BearerAuthProvider
 from fastmcp.server.dependencies import get_access_token, AccessToken
 from database import NoteRepository
+from jose import jwt #to decode the token pased by client to the mcp server and get the user id
 
 import os
 
@@ -28,11 +29,12 @@ mcp = FastMCP(name="Notes App", version="1.0.0", auth=auth)
 
 # doc screen in triple quotes is important for the MCP client to know what the tool does
 #using database functions defined in database.py to add, retrieve, and delete notes
+#was using access_token.client_id to get the user id, but that was only getting the client id for Claude Code, now using sub in the jwt token to get the user id
 @mcp.tool
 def get_my_notes() -> str:
     """Get all notes for the current user"""
     access_token: AccessToken = get_access_token()
-    user_id = access_token.client_id
+    user_id = jwt.get_unverified_claims(access_token.token)["sub"]
 
     notes = NoteRepository.get_notes_by_user(user_id)
     if not notes:
@@ -47,7 +49,7 @@ def get_my_notes() -> str:
 def add_note(title: str, content: str) -> str:
     """Add a note to the current user's notes"""
     access_token: AccessToken = get_access_token()
-    user_id = access_token.client_id
+    user_id = jwt.get_unverified_claims(access_token.token)["sub"]
 
     note = NoteRepository.create_note(user_id, title,content)
     return f"Note added: {note.content}"
@@ -56,7 +58,7 @@ def add_note(title: str, content: str) -> str:
 def delete_note(note_id: int) -> str:
     """Delete a note from the current user's notes"""
     access_token: AccessToken = get_access_token()
-    user_id = access_token.client_id
+    user_id = jwt.get_unverified_claims(access_token.token)["sub"]
 
     note = NoteRepository.delete_note(note_id)
 
